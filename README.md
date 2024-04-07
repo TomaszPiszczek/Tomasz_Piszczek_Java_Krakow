@@ -1,0 +1,1 @@
+### The BasketSplitter is a Java library designed to optimize the distribution of items among different suppliers based on a pre-defined configuration file using greedy algorithm. It splits a list of items among suppliers in an optimal manner.
