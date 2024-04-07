@@ -1,5 +1,6 @@
-package org.example;
+package org.example.BasketSplitterUnitTests;
 
+import org.example.BasketSplitter;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -9,9 +10,9 @@ import java.util.stream.Collectors;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-class BasketSplitterTest {
+class SplitMethodTest {
     private BasketSplitter basketSplitter;
-    private Map<String, List<String>> mockProductDeliveryMap = Map.of(
+    private final Map<String, List<String>> mockProductDeliveryMap = Map.of(
             "Carrots (1kg)", Arrays.asList("Express Delivery", "Click&Collect"),
             "Soda (24x330ml)", List.of("Express Delivery"),
             "Steak (300g)", Arrays.asList("Express Delivery", "Click&Collect"),
@@ -57,17 +58,27 @@ class BasketSplitterTest {
     }
 
     @Test
-    void splitShouldReturnWileItemNotExists() {
+    void splitShouldReturnEmptyMapForEmptyInput() {
+        List<String> testItems = Collections.emptyList();
+
+        Map<String, List<String>> result = basketSplitter.split(testItems);
+
+        assertEquals(0, result.size());
+    }
+
+    @Test
+    void splitShouldReturnEmptyMapForNonexistentItems() {
         List<String> testItems = Arrays.asList(
-                "NotExisitingItem"
+                "Nonexistent Item 1",
+                "Nonexistent Item 2"
         );
 
         Map<String, List<String>> result = basketSplitter.split(testItems);
-        assertEquals(result.size(), 0);
+
+        assertEquals(0, result.size());
     }
 
 
 
 
-    
 }
